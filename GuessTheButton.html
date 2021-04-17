@@ -18,6 +18,14 @@
       function setCorrectButton() {
         correctButtonIndex = getRndInteger(0, 2);
       }
+
+      function checkAnswer(buttonIndex) {
+        if (buttonIndex == correctButtonIndex) {
+          alert("CORRECT!");
+        } else {
+          alert("Wrong...");
+        }
+      }
     </script>
   </head>
   <body style="text-align:center" onload="setCorrectButton()">
@@ -26,11 +34,11 @@
     <br><br>
     <h1>Guess the correct button!</h1>
     <br><br>
-    <button type="button" class="btn btn-secondary btn-lg" id="button1">Large button</button>
+    <button type="button" class="btn btn-secondary btn-lg" id="button1" onclick="checkAnswer('0')">Large button</button>
     <br><br>
-    <button type="button" class="btn btn-secondary btn-lg" id="button2">Large button</button>
+    <button type="button" class="btn btn-secondary btn-lg" id="button2" onclick="checkAnswer('1')">Large button</button>
     <br><br>
-    <button type="button" class="btn btn-secondary btn-lg" id="button3">Large button</button>
+    <button type="button" class="btn btn-secondary btn-lg" id="button3" onclick="checkAnswer('2')">Large button</button>
     <br>
 
 
