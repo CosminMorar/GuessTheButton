@@ -9,6 +9,7 @@
     <title>Hello, world!</title>
 
     <script type="text/javascript">
+      var cntButtons;
       var correctButtonIndex;
 
       function getRndInteger(min, max) {
@@ -16,32 +17,52 @@
       }
 
       function setCorrectButton() {
-        correctButtonIndex = getRndInteger(0, 2);
+        correctButtonIndex = getRndInteger(1, cntButtons);
       }
 
       function checkAnswer(buttonIndex) {
-        if (buttonIndex == correctButtonIndex) {
-          alert("CORRECT!");
-        } else {
-          alert("Wrong...");
+          if (buttonIndex == correctButtonIndex) {
+            alert("CORRECT!");
+          } else {
+            alert("Wrong...");
+          }
+      }
+
+      function changeCntButtons() {
+        cntButtons = document.getElementById('inputCntButtons').value;
+        var buttons = document.getElementById('buttons');
+        buttons.innerHTML = '';
+        for (var i = 1; i <= cntButtons; i++) {
+          buttons.innerHTML += '<button type="button" class="btn btn-secondary btn-lg" id="button' + i + '" onclick="checkAnswer(' + i + ')">Button ' + i + '</button><br><br>';
         }
+        setCorrectButton();
       }
     </script>
   </head>
-  <body style="text-align:center" onload="setCorrectButton()">
+  <body onload="setCorrectButton()">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
     <br><br>
+
     <h1>Guess the correct button!</h1>
-    <br><br>
-    <button type="button" class="btn btn-secondary btn-lg" id="button1" onclick="checkAnswer('0')">Large button</button>
-    <br><br>
-    <button type="button" class="btn btn-secondary btn-lg" id="button2" onclick="checkAnswer('1')">Large button</button>
-    <br><br>
-    <button type="button" class="btn btn-secondary btn-lg" id="button3" onclick="checkAnswer('2')">Large button</button>
-    <br>
 
+    <br><br>
 
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="inputCntButtons" class="col-form-label">Number of buttons</label>
+      </div>
+      <div class="col-auto">
+        <input id="inputCntButtons" class="form-control">
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn btn-primary btn-sm" onclick="changeCntButtons()">Apply</button>
+      </div>
+    </div>
 
+    <br><br>
+
+    <div id="buttons">
+    </div>
   </body>
 </html>
